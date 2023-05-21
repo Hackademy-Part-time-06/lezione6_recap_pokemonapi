@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PublicController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,4 +14,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [PublicController::class,'index'])->name('index');
+Route::get('/', [PublicController::class, 'index'])->name('poke.index');
+Route::get('/show', [PublicController::class, 'show'])->name('poke.show');
