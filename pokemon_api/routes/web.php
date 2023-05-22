@@ -15,4 +15,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [PublicController::class, 'index'])->name('poke.index');
-Route::get('/show', [PublicController::class, 'show'])->name('poke.show');
+Route::get('/show/{slug}', [PublicController::class, 'show'])->name('poke.show');
+Route::post('/invia', [PublicController::class, 'send'])->name('poke.send');
+
+
+Route::get('/info', [PublicController::class, 'info'])->name('poke.info');
+Route::get('/contact}', [PublicController::class, 'contact'])->name('poke.contact');
