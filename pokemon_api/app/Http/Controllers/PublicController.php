@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Http\Request;
 
+
 class PublicController extends Controller
 {
     //array chiave=>valore
@@ -18,16 +19,20 @@ class PublicController extends Controller
     ];
     public function index()
     {
-        return view('poke.index', ['pokemonapi' => self::$pokemonapi]); //passo l'array STATICO chiave=>valore di cui sopra
+
+        $pokemonapi = Http::get('https://pokeapi.co/api/v2/pokemon')->json();
+        //dd($pokemonapi);
+        return view('poke.index', ['pokemonapi' => $pokemonapi]); //passo l'array STATICO chiave=>valore di cui sopra
     }
 
     public function show($slug)
     {
-        foreach (self::$pokemonapi as $pokeapi) { //ciclo dall'array statico il singolo elemento
-            if ($slug == $pokeapi['slug']) { //se il nome richiamato $slug(attributo) che sto cliccando è uguale al contenuto che voglio proporre in show che ritrovo nella parte chiave=>valore,allora ritornami la vista di poke.show con l'elemento ed i suoi dati(non metto il chiave valore perchè deve tornare TUTTI I DATI)
-                return view('poke.show', ['pokeapi' => $pokeapi]);
-            }
-        } //altrimenti errore 404
+        $pokemonapi = Http::get('https://pokeapi.co/api/v2/pokemon/' . $slug)->json();
+        // foreach (self::$pokemonapi as $pokeapi) { //ciclo dall'array statico il singolo elemento
+        //     if ($slug == $pokeapi['slug']) { //se il nome richiamato $slug(attributo) che sto cliccando è uguale al contenuto che voglio proporre in show che ritrovo nella parte chiave=>valore,allora ritornami la vista di poke.show con l'elemento ed i suoi dati(non metto il chiave valore perchè deve tornare TUTTI I DATI)
+        return view('poke.show', ['pokeapi' => $pokemonapi]);
+        //     }
+        // } //altrimenti errore 404
         abort(404);
     }
 
@@ -48,6 +53,6 @@ class PublicController extends Controller
             "email" => $body->email,
             "message" => $body->message,
         ];
-        dd($data);
+        //dd($data);
     }
 }

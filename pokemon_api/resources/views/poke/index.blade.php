@@ -1,8 +1,10 @@
 <x-layout>
 <ul>
-    @forelse ($pokemonapi as $pokeapi)
+  
+    @forelse ($pokemonapi['results'] as $pokeapi)
     <li>
-        <a href="{{route('poke.show',['slug'=>$pokeapi['slug']])}}">
+        
+        <a href="{{route('poke.show',['name'=>$pokeapi['name']])}}">
             {{$pokeapi['name']}}
         </a>
     </li> <!-- accesso al singolo elemento dell'array chiave=>valore-->
