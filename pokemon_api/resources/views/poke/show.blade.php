@@ -23,7 +23,7 @@
         @method('POST')
         @csrf<!-- per non "sniffare" i dati-->
 
-        <input class="form-control" type="hidden" placeholder="None" name="pokemon_name" value="{{$pokeapi['slug']}}"/>
+        <input class="form-control" type="hidden" placeholder="None" name="pokemon_name" value="{{$pokeapi['name']}}"/>
 
     <!-- nome-->
       <div class="mb-3">

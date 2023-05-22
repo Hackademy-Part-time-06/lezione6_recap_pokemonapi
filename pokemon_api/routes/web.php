@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [PublicController::class, 'index'])->name('poke.index');
-Route::get('/show/{name}', [PublicController::class, 'show'])->name('poke.show');
+Route::get('/show/{name}', [PublicController::class, 'show'])->name('poke.show'); //sostituisco 'name' a 'slug' perchè nell'api è questa la chiave
 Route::post('/invia', [PublicController::class, 'send'])->name('poke.send');
 
 

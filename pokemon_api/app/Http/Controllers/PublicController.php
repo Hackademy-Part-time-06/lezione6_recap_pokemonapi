@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class PublicController extends Controller
 {
     //array chiave=>valore
-    public static $pokemonapi = [
+    public static $pokemonapi = [//METODO STATICO
         ['name' => 'Bulbasaur', 'slug' => 'bulbasaur'],
         ['name' => 'Pikachu', 'slug' => 'pikachu'],
         ['name' => 'Jigglypuff', 'slug' => 'jigglypuff'],
@@ -27,12 +27,15 @@ class PublicController extends Controller
 
     public function show($slug)
     {
-        $pokemonapi = Http::get('https://pokeapi.co/api/v2/pokemon/' . $slug)->json();
+        $pokemonapi = Http::get('https://pokeapi.co/api/v2/pokemon/' . $slug)->json();//.$slug RENDE L'URI DINAMICOOOOOOOOOOOOOOO;
+
         // foreach (self::$pokemonapi as $pokeapi) { //ciclo dall'array statico il singolo elemento
         //     if ($slug == $pokeapi['slug']) { //se il nome richiamato $slug(attributo) che sto cliccando è uguale al contenuto che voglio proporre in show che ritrovo nella parte chiave=>valore,allora ritornami la vista di poke.show con l'elemento ed i suoi dati(non metto il chiave valore perchè deve tornare TUTTI I DATI)
-        return view('poke.show', ['pokeapi' => $pokemonapi]);
-        //     }
-        // } //altrimenti errore 404
+
+        return view('poke.show', ['pokeapi' => $pokemonapi]);//precedentemente c'era un self, perchè statico, ora richiamo invece un'api esterno, quindi diventa DINAMICO. Elimino, quindi, anche il foreach (commentato) che porta con se il metodo statico
+        //}
+        //} 
+        //altrimenti errore 404
         abort(404);
     }
 
