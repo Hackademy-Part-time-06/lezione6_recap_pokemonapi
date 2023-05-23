@@ -1,6 +1,7 @@
 <x-layout>
+  <!-- card-->
     <div class="card" style="width: 18rem;">
-        <img src="..." class="card-img-top" alt="...">
+        <img src="{{$pokeapi['sprites']['front_default']}}" class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title">{{$pokeapi['name']}}</h5><!-- rotta parametrica-->
         </div>
